@@ -1,0 +1,26 @@
+/* // index.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: black;
+  scroll-behavior: smooth;
+  overflow-x:auto;
+}
+
+* {
+  cursor: default;
+}
+
+button, li, a, svg, [role="button"], .action-icon, .cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Reset futuristic Orbitron font for all React-Bootstrap Modals globally */
+.modal, .modal-content, .modal-title, .modal-body, .form-control, .form-select {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif !important;
+}

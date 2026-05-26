@@ -1,0 +1,1481 @@
+        /* Base styles for the dashboard container */
+        .client-dashboard-container {
+          font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+          background: var(--bg-body);
+            color: var(--text-primary);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column; /* Changed to column to stack header and content */
+          overflow-x: hidden; /* Prevent horizontal scroll due to fixed sidebar */
+        }
+
+                /* --- CSS Variables for Theming (Ensure these are defined) --- */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --bg-nav-link-hover: #f1f5f9;
+        }
+        
+                .dark-mode-active {
+            --bg-body: #1a202c; /* Very Dark Blue */
+            --bg-card: #2d3748; /* Darker Grey Blue */
+            --text-primary: #e2e8f0; /* Light Text */
+            --text-secondary: #a0aec0; /* Lighter Secondary Text */
+            --border-color: #4a5568; /* Darker Border */
+            --bg-nav-link-hover: #4a5568; /* Darker hover state */
+        }
+
+                .client-dashboard-container h1, .client-dashboard-container h2, .client-dashboard-container h3, .client-dashboard-container h4 {
+            color: var(--text-primary);
+        }
+
+           /* Card Background */
+        .client-dashboard-container > div[style*="background: #ffffff"],
+        .client-dashboard-container .service-card {
+            background: var(--bg-card) !important;
+            border-color: var(--border-color);
+        }
+     
+              /* Table overrides (for the Applications table) */
+        .client-dashboard-container table {
+             color: var(--text-primary);
+        }
+        .client-dashboard-container table thead tr {
+            background-color: var(--bg-body) !important;
+            color: var(--text-secondary) !important;
+        }
+        .client-dashboard-container table tbody tr {
+             background-color: var(--bg-card);
+        }
+        .client-dashboard-container table tbody tr:nth-child(even) {
+            background-color: var(--bg-body); /* Slightly different background for alternating rows */
+        }
+        .client-dashboard-container table tbody tr:hover {
+            background-color: var(--bg-nav-link-hover) !important;
+        }
+
+
+        .dashboard-title {
+          margin-top :-55px;
+        }
+
+        html.dark-mode .client-dashboard-container {
+          background: #1a202c;
+          color: #e2e8f0;
+        }
+
+        html.dark-mode .modal-content-style {
+           background: var(--bg-card) !important;
+            border: 1px solid var(--border-color);
+        }
+
+        html.dark-mode .modal-close-button {
+          color: #a0aec0;
+        }
+
+        html.dark-mode .modal-close-button:hover {
+          background-color: #4a5568;
+        }
+
+        html.dark-mode .modal-table-header {
+          background-color: #4a5568;
+          color: #cbd5e1;
+        }
+
+        html.dark-mode .modal-table-cell {
+          background-color: #2d3748;
+          color: #e2e8f0;
+          border-bottom: 1px solid #4a5568;
+        }
+
+        html.dark-mode .modal-table-row:hover {
+          background-color: #4a5568;
+        }
+
+        html.dark-mode .chart-and-ads-container {
+          background: #2d3748;
+          border: 1px solid #4a5568;
+        }
+
+        html.dark-mode .ad-placeholder {
+          background: #2d3748;
+          border: 1px solid #4a5568;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        html.dark-mode .ad-placeholder p {
+          color: #a0aec0;
+        }
+
+        html.dark-mode .dashboard-title {
+          color: #e2e8f0;
+        }
+
+        html.dark-mode .sidebar-menu {
+          background: #2d3748;
+          color: #e2e8f0;
+          box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        }
+
+        html.dark-mode .sidebar-menu h4 {
+          color: #e2e8f0;
+        }
+
+        html.dark-mode .sidebar-menu div[style*="background-color: #f8fafc"] {
+          background-color: #4a5568 !important;
+        }
+
+        html.dark-mode .sidebar-menu p[style*="color: #64748b"] {
+          color: #a0aec0 !important;
+        }
+
+        html.dark-mode .sidebar-menu p[style*="color: #1e293b"] {
+          color: #e2e8f0 !important;
+        }
+
+        html.dark-mode .help-support-button {
+          color: #a0aec0;
+        }
+
+        html.dark-mode .help-support-button:hover {
+          color: #63b3ed;
+        }
+
+        html.dark-mode .logout-button {
+          background: #4a5568;
+          color: #fc8181;
+        }
+
+        html.dark-mode .logout-button:hover {
+          background-color: #6b4617;
+        }
+
+        .previewValueDisplay { padding: 0.4rem 0.6rem; font-size: 0.95rem; background-color: #e9ecef; border-radius: 5px; border: 1px solid #ced4da; min-height: 38px; display: flex; align-items: center; word-break: break-word; }
+.previewTextAreaDisplay { padding: 0.4rem 0.6rem; font-size: 0.95rem; background-color: #e9ecef; border-radius: 5px; border: 1px solid #ced4da; min-height: 80px; align-items: flex-start; display: flex; word-break: break-word; }
+
+       /* --- Under Development Page Styles --- */
+.under-development-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  padding: 20px;
+}
+.back-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #333;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+html.dark-mode .back-btn {
+    background-color: #4a5568 !important;
+            color: #e2e8f0 !important;
+}
+.back-btn:hover {
+  background-color: #e0e0e0;
+}
+html.dark-mode .back-btn:hover {
+  background-color: #64748B;
+}
+.development-message h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.development-message p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.notify-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+.notify-btn:hover {
+  background-color: #0056b3;
+}
+.notify-success-message {
+  color: #28a745;
+  font-weight: 500;
+  margin-top: 20px;
+}
+html.dark-mode .notify-success-message {
+  color: #9ae6b4;
+}
+
+        /* Styles for various buttons and cards */
+        .download-button {
+          background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .download-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+          background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+        }
+
+        /* New Renew Button Style */
+        .renew-button-style {
+          width: 6.5em;
+          height: 2.3em;
+          margin: 0.5em auto; /* Center the button */
+          background: black;
+          color: white;
+          border: none;
+          border-radius: 0.625em;
+          font-size: 20px;
+          font-weight: bold;
+          cursor: pointer;
+          position: relative;
+          z-index: 1;
+          overflow: hidden;
+          display: block; /* Ensure it takes full width of its container for margin:auto */
+          text-align: center; /* Center text if display:block */
+          line-height: 2.3em; /* Vertically center text */
+        }
+
+        .renew-button-style:hover {
+          color: black;
+        }
+
+        .renew-button-style:after {
+          content: "";
+          background: white;
+          position: absolute;
+          z-index: -1;
+          left: -20%;
+          right: -20%;
+          top: 0;
+          bottom: 0;
+          transform: skewX(-45deg) scale(0, 1);
+          transition: all 0.5s;
+        }
+
+        .renew-button-style:hover:after {
+          transform: skewX(-45deg) scale(1, 1);
+          -webkit-transition: all 0.5s;
+          transition: all 0.5s;
+        }
+
+
+        .renew-plan-button { /* This is for the sidebar button */
+          background: linear-gradient(135deg, #4ade80 0%, #3b82f6 100%);
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          margin-bottom: 32px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          width: 100%;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .renew-plan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background: #2563eb;
+        }
+
+        .help-support-button {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 12px 0;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+        .help-support-button:hover {
+            color: #3b82f6;
+        }
+
+        .logout-button {
+            background: #f1f5f9;
+            color: #ef4444;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 16px 0 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .logout-button:hover {
+            background-color: #fee2e2;
+        }
+
+        .back-button { /* This style is now unused for the ClientProfile modal */
+            background: #ffffff;
+            color: #3b82f6;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .back-button:hover {
+            background-color: #f8fafc;
+        }
+
+        .worksheet-button {
+            margin: 0 auto;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .worksheet-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background: #2563eb;
+        }
+
+        .interviews-card {
+            padding: 40px 24px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 10px 15px rgba(99, 102, 241, 0.3);
+            cursor: pointer;
+            flex: 1 1 300px; /* Flex-basis for cards, will wrap */
+            max-width: 100%; /* Ensure it doesn't overflow on small screens */
+            min-width: 280px; /* Minimum width for the card to be readable */
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* For inner absolute elements */
+            overflow: hidden; /* To contain background elements */
+        }
+        .interviews-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .resume-card {
+            padding: 40px 24px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%)
+            ;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 10px 15px rgba(16, 185, 129, 0.3);
+            cursor: pointer;
+            flex: 1 1 300px; /* Flex-basis for cards, will wrap */
+            max-width: 100%; /* Ensure it doesn't overflow on small screens */
+            min-width: 280px; /* Minimum width for the card to be readable */
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* For inner absolute elements */
+            overflow: hidden; /* To contain background elements */
+        }
+        .resume-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Modal Specific Styles */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(4px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 100;
+        }
+
+        .modal-content-style {
+          background: #ffffff;
+          padding: 32px;
+          border-radius: 16px;
+          box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+          width: 90%; /* Responsive width */
+          max-width: 900px; /* Max width for larger screens */
+          max-height: 80vh;
+          overflow-y: auto;
+          position: relative;
+          border: 1px solid #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .modal-content-style {
+                padding: 20px;
+                width: 95%; /* Wider on small screens */
+                margin: 10px; /* Some margin from edges */
+            }
+        }
+
+
+        .modal-close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .modal-close-button:hover {
+            background-color: #f1f5f9;
+        }
+
+        .modal-table-container {
+            overflow-x: auto; /* Enable horizontal scrolling for tables */
+            border-radius: 8px;
+        }
+
+        .modal-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            table-layout: auto; /* Allow column widths to adjust */
+        }
+
+        .modal-table-header {
+            padding: 12px 16px;
+            text-align: left;
+            background-color: var(--bg-body) !important;
+            color: #475569;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        @media (max-width: 768px) {
+            .modal-table-header {
+                font-size: 0.7rem; /* Smaller font on mobile */
+                padding: 8px 10px;
+            }
+        }
+
+        .modal-table-cell {
+            padding: 16px;
+            text-align: left;
+             background-color: var(--bg-card) !important;
+            color: var(--text-primary) !important;
+            border: none;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #f1f5f9;
+            white-space: nowrap; /* Prevent text wrapping in cells on smaller screens */
+        }
+        @media (max-width: 768px) {
+            .modal-table-cell {
+                font-size: 0.8rem; /* Smaller font on mobile */
+                padding: 10px;
+            }
+        }
+
+        .modal-table-row {
+            transition: background-color 0.2s;
+        }
+        .modal-table-row:hover {
+            background-color: #f8fafc;
+        }
+        .modal-table-row td:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        .modal-table-row td:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Chart and Advertisement Specific Styles */
+        .chart-and-ads-container {
+          display: grid;
+          /* Explicitly setting fixed width for ads, 1fr for chart on large screens */
+          grid-template-columns: 200px 1fr 200px;
+          gap: 24px;
+          margin: 0 auto 32px auto; /* Center the container */
+          max-width: 1400px; /* Optional: Max width for the entire grid container */
+          align-items: start; /* Align items to the start of the grid cell vertically */
+          width: 100%; /* Ensure it takes full available width within its parent */
+        }
+
+        @media (max-width: 1024px) { /* Medium screens - stack ads above/below chart */
+          .chart-and-ads-container {
+            grid-template-columns: 1fr; /* Stack into a single column */
+            grid-template-areas: "ad-left" "chart" "ad-right"; /* Define grid areas for stacking */
+            gap: 20px;
+          }
+          .ad-column:first-child { grid-area: ad-left; } /* Left ad comes first */
+          .ad-column:last-child { grid-area: ad-right; }  /* Right ad comes last */
+        }
+
+        @media (max-width: 768px) { /* Small screens (mobile) */
+          .chart-and-ads-container {
+            gap: 15px;
+            padding: 0 10px; /* Add some horizontal padding */
+          }
+        }
+
+        .ad-column {
+          display: flex;
+          justify-content: center;
+          align-items: center; /* Center content vertically within the column */
+          min-height: 250px; /* Ensure ads have a decent minimum height */
+          height: auto; /* Allow height to adjust based on content */
+          padding: 10px 0; /* Add some vertical padding within the column */
+        }
+
+        .ad-placeholder {
+          background: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+          border: 1px solid #e2e8f0;
+          padding: 15px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%; /* Ensure it fills its parent ad-column */
+          height: 100%; /* Ensure it fills its parent ad-column */
+          box-sizing: border-box; /* Include padding/border in element's total width and height */
+        }
+        .ad-placeholder p {
+            font-size: 0.8rem; /* Slightly larger font for ad text */
+            line-height: 1.4; /* Improve readability */
+            margin-bottom: 5px;
+        }
+        .ad-placeholder img {
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px;
+            display: block; /* Remove extra space below image */
+            margin: 0 auto 10px auto; /* Center image and add some margin */
+            object-fit: contain; /* Ensure the image fits within its bounds without cropping */
+            flex-grow: 1; /* Allow image to take available space */
+        }
+        .ad-placeholder p:last-of-type {
+            margin-top: auto; /* Push the last paragraph to the bottom if space allows */
+        }
+
+
+        /* General element responsiveness */
+        .main-content-area {
+            flex-grow: 1;
+            padding: 24px;
+            max-width: 100%;
+            padding-top: 60px; /* Added padding to account for fixed header */
+            background-color: #f1f1f1ff;
+
+        }
+        @media (max-width: 768px) {
+            .main-content-area {
+                padding: 15px; /* Smaller padding on mobile */
+                padding-top: 70px; /* Adjust for smaller header on mobile */
+            }
+            .dashboard-title {
+                font-size: 1.5rem; /* Smaller title on mobile */
+            }
+        }
+        @media (max-width: 480px) {
+            .dashboard-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        .cards-section {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 40px 0;
+            flex-wrap: wrap; /* Allow cards to wrap */
+        }
+        @media (max-width: 768px) {
+            .cards-section {
+                gap: 20px; /* Smaller gap on tablets */
+                margin: 30px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .cards-section {
+                gap: 15px; /* Even smaller gap on mobile */
+                margin: 20px 0;
+            }
+        }
+
+        /* ClientProfile Modal Specific Styles */
+        .profile-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .profile-grid-container {
+                grid-template-columns: 1fr; /* Stack on small screens */
+            }
+        }
+
+        .profile-info-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        html.dark-mode .profile-info-card {
+            background: #4a5568;
+            border: 1px solid #64748B;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .profile-info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1e293b;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        html.dark-mode .profile-info-title {
+            color: #e2e8f0;
+            border-bottom: 1px solid #64748B;
+        }
+
+        .profile-detail-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+        html.dark-mode .profile-detail-row {
+            color: #e2e8f0;
+        }
+
+        .profile-detail-row .profile-detail-label {
+            font-weight: 500;
+            color: #475569;
+            flex-basis: 40%;
+            text-align: left;
+        }
+        html.dark-mode .profile-detail-row .profile-detail-label {
+            color: #cbd5e1;
+        }
+
+        .profile-detail-row .profile-detail-value {
+            flex-basis: 60%;
+            text-align: right;
+            font-weight: 400;
+        }
+        html.dark-mode .profile-detail-row .profile-detail-value {
+            color: #e2e8f0;
+        }
+
+
+        /* Subscription Details Modal Specific Styles */
+        .subscription-details-card {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          width: 100%;
+          padding: 20px;
+          background-color: #f8fafc;
+          border-radius: 12px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          margin-bottom: 0;
+          color: #1e293b;
+        }
+
+        html.dark-mode .subscription-details-card {
+          background-color: #4a5568;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          color: #e2e8f0;
+        }
+
+        .subscription-detail-item {
+          text-align: center;
+          padding: 10px 0;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        .subscription-detail-item:last-child {
+          border-bottom: none;
+        }
+        html.dark-mode .subscription-detail-item {
+          border-bottom: 1px solid #64748B;
+        }
+
+        .subscription-detail-label {
+          margin: 0;
+          font-size: 0.9rem;
+          color: #64748b;
+          font-weight: 500;
+        }
+        html.dark-mode .subscription-detail-label {
+          color: #a0aec0;
+        }
+
+        .subscription-detail-value {
+          display: block;
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #1e293b;
+          margin-top: 5px;
+        }
+        html.dark-mode .subscription-detail-value {
+          color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+          .subscription-details-card {
+            padding: 15px;
+            gap: 10px;
+          }
+          .subscription-detail-value {
+            font-size: 1.3rem;
+          }
+        }
+
+        /* Payment Options Modal Styles (New/Updated) */
+        .payment-modal-content-wrapper {
+            position: relative;
+            background: #f8fafc; /* Light background for the overall modal */
+            border-radius: 16px;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px; /* Wider to accommodate two columns */
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column; /* Stack sections on small screens */
+            padding: 20px; /* Overall padding */
+        }
+        @media (min-width: 1024px) {
+            .payment-modal-content-wrapper {
+                padding: 0; /* Remove overall padding if grid handles it */
+            }
+        }
+
+        html.dark-mode .payment-modal-content-wrapper {
+            background: #1a202c;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-modal-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Payment Info takes 2/3, Order Summary 1/3 */
+            gap: 20px;
+            padding: 20px; /* Padding inside the grid */
+        }
+        @media (max-width: 1024px) {
+            .payment-modal-grid {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+        }
+
+        .payment-info-section, .order-summary-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+        }
+        html.dark-mode .payment-info-section, html.dark-mode .order-summary-section {
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .payment-section-header {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        html.dark-mode .payment-section-header {
+            color: #e2e8f0;
+            border-bottom: 1px solid #4a5568;
+        }
+        .ssl-badge {
+            background: #d4edda;
+            color: #155724;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        html.dark-mode .ssl-badge {
+            background: #4a5568;
+            color: #9ae6b4;
+        }
+
+        .payment-sub-heading {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 15px;
+        }
+        html.dark-mode .payment-sub-heading {
+            color: #cbd5e1;
+        }
+
+        .payment-method-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: center; /* Center items when wrapped */
+        }
+
+        .payment-method-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            width: 120px; /* Fixed width for method cards */
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #475569;
+            transition: all 0.2s ease;
+        }
+        html.dark-mode .payment-method-card {
+            background: #4a5568;
+            border: 1px solid #64748B;
+            color: #cbd5e1;
+        }
+
+        .payment-method-card.selected {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px #3b82f6;
+            background: #e0f2fe; /* Light blue for selected */
+            color: #1e293b;
+        }
+        html.dark-mode .payment-method-card.selected {
+            background: #3182ce;
+            color: #e2e8f0;
+        }
+
+        .payment-method-card svg {
+            color: #64748b;
+        }
+        .payment-method-card.selected svg {
+            color: #3b82f6;
+        }
+        html.dark-mode .payment-method-card svg {
+            color: #a0aec0;
+        }
+        html.dark-mode .payment-method-card.selected svg {
+            color: #90cdf4;
+        }
+
+
+        .all-methods-secured {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+        html.dark-mode .all-methods-secured {
+            color: #a0aec0;
+        }
+
+        .card-form label {
+            display: block;
+            font-size: 0.875rem;
+            color: #475569;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        html.dark-mode .card-form label {
+            color: #cbd5e1;
+        }
+
+         .card-form input, .card-form textarea {
+            background: var(--bg-body) !important;
+            border-color: var(--border-color);
+            color: var(--text-primary) !important;
+        }
+
+
+
+        .card-form input[type="email"],
+        .card-form input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+        html.dark-mode .card-form input {
+            background: #4a5568;
+            border: 1px solid #64748B;
+            color: #e2e8f0;
+        }
+        html.dark-mode .card-form input::placeholder {
+            color: #a0aec0;
+        }
+
+        .card-form .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .card-form .form-row > div {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: #3b82f6; /* Modern way to style checkbox */
+        }
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 400;
+        }
+        html.dark-mode .checkbox-group label {
+            color: #cbd5e1;
+        }
+
+        .payment-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: auto; /* Push buttons to the bottom */
+            padding-top: 20px; /* Space from form fields */
+            border-top: 1px solid #e2e8f0;
+        }
+        html.dark-mode .payment-buttons {
+            border-top: 1px solid #4a5568;
+        }
+
+        .cancel-button {
+            background: #e2e8f0;
+            color: #475569;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            flex: 1;
+        }
+        .cancel-button:hover {
+            background-color: #cbd5e1;
+        }
+        html.dark-mode .cancel-button {
+            background: #4a5568;
+            color: #cbd5e1;
+        }
+        html.dark-mode .cancel-button:hover {
+            background-color: #64748B;
+        }
+
+        .pay-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+        }
+
+        .order-summary-section {
+            background: #f8fafc; /* Lighter background for summary */
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        html.dark-mode .order-summary-section {
+            background: #2d3748;
+            border: 1px solid #4a5568;
+        }
+
+        .summary-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid #e2e8f0;
+        }
+        html.dark-mode .summary-card {
+            background: #4a5568;
+            border: 1px solid #64748B;
+        }
+
+        .summary-item-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .summary-main-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0;
+        }
+        html.dark-mode .summary-main-text {
+            color: #e2e8f0;
+        }
+        .summary-sub-text {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin: 0;
+        }
+        html.dark-mode .summary-sub-text {
+            color: #a0aec0;
+        }
+
+        .summary-rating {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+        html.dark-mode .summary-rating {
+            color: #cbd5e1;
+        }
+        .star-icon {
+            margin-right: 5px;
+            font-size: 1.1rem;
+        }
+        .reviews-count {
+            margin-left: 10px;
+            color: #94a3b8;
+        }
+        html.dark-mode .reviews-count {
+            color: #a0aec0;
+        }
+
+        .summary-divider {
+            border-top: 1px dashed #e2e8f0;
+            margin: 15px 0;
+        }
+        html.dark-mode .summary-divider {
+            border-top: 1px dashed #64748B;
+        }
+
+        .bill-to-details p {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+        html.dark-mode .bill-to-details p {
+            color: #cbd5e1;
+        }
+
+        .summary-line-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            color: #475569;
+            margin-bottom: 10px;
+        }
+        html.dark-mode .summary-line-item {
+            color: #cbd5e1;
+        }
+        .summary-line-item span:first-child {
+            font-weight: 500;
+        }
+        .summary-line-item span:last-child {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        html.dark-mode .summary-line-item span:last-child {
+            color: #e2e8f0;
+        }
+
+        .included-text {
+            color: #047857;
+            font-weight: 600;
+        }
+        html.dark-mode .included-text {
+            color: #9ae6b4;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        html.dark-mode .summary-total {
+            color: #e2e8f0;
+            border-top: 1px solid #4a5568;
+        }
+
+        .security-trust-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #e2e8f0;
+        }
+        html.dark-mode .security-trust-info {
+            border-top: 1px dashed #64748B;
+        }
+        .security-trust-info p {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+        html.dark-mode .security-trust-info p {
+            color: #cbd5e1;
+        }
+        .green-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #047857;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        html.dark-mode .green-dot {
+            background-color: #9ae6b4;
+        }
+
+        .back-to-dashboard-button {
+            background: none;
+            border: none;
+            color: #3b82f6;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .back-to-dashboard-button:hover {
+            background-color: #e0f2fe;
+        }
+        html.dark-mode .back-to-dashboard-button {
+            color: #90cdf4;
+        }
+        html.dark-mode .back-to-dashboard-button:hover {
+            background-color: #4a5568;
+        }
+
+        @media (max-width: 768px) {
+            .payment-info-section, .order-summary-section {
+                padding: 20px;
+            }
+            .payment-section-header {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+            }
+            .payment-sub-heading {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+            .payment-method-options {
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .payment-method-card {
+                width: 100px;
+                padding: 10px;
+                font-size: 0.75rem;
+            }
+            .card-form input {
+                padding: 10px;
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+            .card-form .form-row {
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            .checkbox-group label {
+                font-size: 0.8rem;
+            }
+            .payment-buttons {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 15px;
+            }
+            .cancel-button, .pay-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .summary-card {
+                padding: 20px;
+                gap: 10px;
+            }
+            .summary-main-text {
+                font-size: 1rem;
+            }
+            .summary-sub-text {
+                font-size: 0.75rem;
+            }
+            .summary-rating {
+                font-size: 0.8rem;
+            }
+            .bill-to-details p, .summary-line-item, .security-trust-info p {
+                font-size: 0.85rem;
+            }
+            .summary-total {
+                font-size: 1rem;
+            }
+            .back-to-dashboard-button {
+                font-size: 0.85rem;
+            }
+        }
+         /* --- NEW STYLES FOR SERVICES SECTION --- */
+        .services-browse {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .services-browse h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+        .services-browse p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+        .services-grid {
+           display: grid;
+          gap: 1.5rem;
+          /* Mobile-first: Default to a single column */
+          grid-template-columns: 1fr;
+        }
+        .service-card {
+         position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(200, 200, 255, 0.2);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card .icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.service-card:nth-child(1) .icon-box { background: linear-gradient(135deg, #4b6bff, #5c5cff); }
+.service-card:nth-child(2) .icon-box { background: linear-gradient(135deg, #a14bff, #d94bff); }
+.service-card:nth-child(3) .icon-box { background: linear-gradient(135deg, #2b8cff, #4bc1ff); }
+.service-card:nth-child(4) .icon-box { background: linear-gradient(135deg, #ff6b6b, #ff8c4b); }
+.service-card:nth-child(5) .icon-box { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.service-card:nth-child(6) .icon-box { background: linear-gradient(135deg, #1e293b, #334155); }
+
+        .card-icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .card-icon-container svg {
+            width: 28px;
+            height: 28px;
+        }
+        .job-app-icon { background-color: #e0f2fe; color: #0ea5e9; }
+        .mobile-app-icon { background-color: #e0e7ff; color: #6366f1; }
+        .web-app-icon { background-color: #dcfce7; color: #22c55e; }
+        .digital-marketing-icon { background-color: #ffedd5; color: #f97316; }
+        .it-talent-icon { background-color: #f3e8ff; color: #a855f7; }
+        .cybersecurity-icon { background-color: #fee2e2; color: #ef4444; }
+
+        .service-card h3 {
+           font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+        }
+        .service-card p {
+           color: #4b5563;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+        }
+
+   .service-card .book-now-btn-new {
+  display: inline-block;
+  background: linear-gradient(90deg, #4b6bff, #6a5bff);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.service-card .book-now-btn-new:hover {
+  opacity: 0.9;
+}
+
+        .dashboard-btn, .book-now-btn-new {
+            color: #ffffff;
+            padding: 12px 0;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .book-now-btn-new { background-color: #10b981; }
+        .book-now-btn-new:hover { background-color: #059669; }
+        .dashboard-btn { background-color: #3b82f6; }
+        .dashboard-btn:hover { background-color: #2563eb; }
+        
+        /* Dark mode styles for new section */
+        html.dark-mode .services-browse p { color: #a0aec0; }
+        html.dark-mode .service-card { background-color: #2d3748; border-color: #4a5568; }
+        html.dark-mode .service-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* In ClientDashboard.jsx, add these styles to one of your existing <style> blocks. */
+
+              /* Tablet view: 2 columns */
+        @media (min-width: 768px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Desktop view: 3 columns */
+        @media (min-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }

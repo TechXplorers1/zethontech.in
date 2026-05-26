@@ -1,0 +1,128 @@
+.industries-dropdown-container {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 40px 0;
+  box-sizing: border-box;
+  z-index: 9997;
+  min-height: fit-content;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform-origin: top center;
+}
+
+.industries-dropdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.industry-card {
+  width: 200px;
+  height: 220px;
+  border: 2px solid #00f0ff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.industry-card span {
+  font-size: 14px;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+
+.industry-card:hover {
+  transform: scale(1.05);
+  background-color: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.industry-card img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 15px;
+}
+
+.industries-dropdown-container:hover {
+  opacity: 1 !important;
+}
+
+/* Tablet and below */
+@media (max-width: 1020px) {
+  .industries-dropdown {
+    justify-content: center;
+    gap: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .industries-dropdown-container {
+    top: 70px;
+    padding: 20px 10px;
+    height: 100vh; /* Make it take full screen height */
+    overflow: hidden; /* Prevent outer scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .industries-dropdown {
+    max-height: 80vh; /* Define scrollable area height */
+    overflow-y: auto; /* Enable scroll */
+    padding-right: 10px; /* For scroll bar spacing */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  }
+
+  .industry-card {
+    width: 140px;
+    height: 180px;
+    padding: 15px;
+  }
+
+  .industry-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .industry-card span {
+    font-size: 13px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .industry-card {
+    width: 130px;
+    height: 170px;
+    padding: 12px;
+  }
+
+  .industry-card span {
+    font-size: 12px;
+  }
+
+  .industries-dropdown {
+    gap: 20px;
+  }
+}

@@ -1,0 +1,329 @@
+:root {
+  --primary-color: #ffffff;
+  --accent-color: #00f0ff;
+  --text-glow: 0 0 10px rgba(0, 240, 255, 0.7);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #000;
+  cursor: none;
+}
+
+/* ======================== */
+/* ==== Hero Section ====== */
+/* ======================== */
+.hero-section {
+  background-image: url('./assets/loop.gif');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+
+
+/* ======================== */
+/* ==== Content Styles ==== */
+/* ======================== */
+.content-container {
+  position: relative;
+  padding-top: 100px; /* Adjust based on navbar height */
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.section-title {
+  padding-bottom: 50px;
+  color: #00f0ff;
+  font-size: 38px;
+}
+
+.content-section {
+  padding: 110px 0;
+  background-color: transparent;
+  color: #fffefee0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* ======================== */
+/* ==== Card Section ====== */
+/* ======================== */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: rgba(12, 12, 12, 0.315);
+  border: 2px solid rgba(17, 168, 155, 0.836);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 260px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
+  color: white;
+  cursor: pointer;
+}
+
+.info-card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.info-card h3 {
+  font-size: 20px;
+}
+
+/* ✅ Responsive Fix */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    width: 90%;
+  }
+}
+
+/* ============================== */
+/* ==== Cinematic Welcome Text = */
+/* ============================== */
+.cinematic-text-wrapper {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.cinematic-text {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-color);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.3;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0;
+  transform: scale(1.8);
+  animation: fadeZoomIn 2s ease-out forwards;
+}
+
+.cinematic-text span {
+  display: block;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+
+/* ============================== */
+/* ==== Engineering Section ==== */
+/* ============================== */
+.engineering-section {
+  margin-top: 3rem;
+}
+
+.future-heading {
+  color: var(--primary-color);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: var(--text-glow);
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1s forwards;
+}
+
+.tech-innovation {
+  color: var(--accent-color);
+  font-size: clamp(1rem, 3vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 10px 0 0 0;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
+
+/* ========================= */
+/* ==== Action Buttons ==== */
+/* ========================= */
+.action-buttons {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+}
+
+.cta-button {
+  padding: 8px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 350px;
+  margin-left: 15px;
+}
+
+.talk-button {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.talk-button:hover {
+  background: var(--primary-color);
+  color: #000;
+}
+
+.services-button {
+  background: var(--accent-color);
+  color: #000;
+  border: 2px solid var(--accent-color);
+}
+
+.services-button:hover {
+  background: transparent;
+  color: var(--accent-color);
+  text-shadow: var(--text-glow);
+}
+
+
+/* ======================== */
+/* ==== Animations ======== */
+/* ======================== */
+@keyframes fadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================== */
+/* ====== Responsiveness ==== */
+/* ========================== */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cinematic-text {
+    font-size: 1.8rem;
+  }
+
+  .engineering-section {
+    margin-top: 2rem;
+  }
+}
+
+/* ========================== */
+/* ===== Main Layout Fix ==== */
+/* ========================== */
+.main-content {
+  margin-top: 80px; /* Match navbar height if applicable */
+}
+
+
+/* Scrollbar hidden by default */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+/* Only show scrollbar when hovering or scrolling */
+body:hover::-webkit-scrollbar,
+body:active::-webkit-scrollbar,
+body:focus::-webkit-scrollbar {
+  background: transparent;
+}
+
+/* Scrollbar thumb styling */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 255, 0.7); /* Aqua color */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Optional: Firefox support (limited) */
+body {
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}

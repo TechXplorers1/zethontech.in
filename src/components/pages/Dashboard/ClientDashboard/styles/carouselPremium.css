@@ -1,0 +1,185 @@
+/* Define colors used for card accents (can be moved to global CSS) */
+:root {
+    --color-blue: #3b82f6;     
+    --color-green: #10b981;    
+    --color-red: #ef4444;      
+    --color-orange: #f97316;   
+    --color-purple: #8b5cf6;   
+    --color-cyan: #06b6d4;     
+}
+
+/* Specific service card styling to match the video design */
+.services-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, #f8faff 0%, #eef2ff 100%);
+}
+
+/* Individual Service Card */
+.service-card-new {
+    background-color: var(--bg-card, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--card-accent-color, #2563eb);/* The colored border accent */
+    border: 1px solid var(--border-color); /* Subtle general border */
+    position: relative;
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+.service-card-new:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: transparent;
+}
+
+.service-card-new:hover .card-icon-container-new {
+    transform: scale(1.1);
+}
+
+/* Top accent bar for color */
+.service-card-new::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; 
+}
+
+.card-icon-container-new {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: var(--card-accent-color); /* Use accent color for background */
+    color: white; /* White icon inside the circle */
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Button styles */
+.book-now-btn-new {
+    background-color: transparent !important;
+    border: 1px solid var(--card-accent-color) !important;
+    color: var(--card-accent-color) !important;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.book-now-btn-new:hover {
+    background-color: var(--card-accent-color) !important;
+    color: white !important;
+}
+
+.dashboard-btn-new {
+    background-color: var(--card-accent-color) !important;
+    color: white !important;
+    width: 100%;
+    border: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-btn-new:hover {
+    opacity: 0.9;
+    background-color: #059669;
+    transform: translateY(-2px);
+}
+
+/* Custom Pricing Banner responsive styles */
+@media (max-width: 992px) {
+    .pricing-text-col, .pricing-table-col {
+        flex: 1 1 100% !important;
+    }
+}
+
+/* New Carousel Styles to match video/image */
+.client-dashboard-carousel .carousel-item {
+    height: 250px; /* Adjust height as needed */
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.carousel-content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    color: white;
+}
+
+.carousel-text-box {
+    max-width: 60%;
+}
+
+.carousel-text-box h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.carousel-text-box p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #e2e8f0;
+}
+
+.carousel-cta-button {
+    background: #3b82f6;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.carousel-cta-button:hover {
+    background: #2563eb;
+}
+
+.carousel-background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5; /* Fade out image for better text readability */
+}
+
+/* Adjust indicators */
+.client-dashboard-carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    margin: 0 5px;
+}
+
+.client-dashboard-carousel .carousel-indicators button.active {
+    background-color: white;
+}
