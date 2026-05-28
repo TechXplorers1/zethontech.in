@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
         <Row className="justify-content-center">
           <Col lg={10} xl={8}>
             <Card className="p-4 p-md-5" style={cardStyles}>
-              
+
               {/* Header */}
               <div className="text-center mb-5">
                 <h1 className="display-5 fw-bold mb-3" style={{ color: isDarkMode ? '#fff' : '#000' }}>Privacy Policy</h1>
@@ -51,7 +51,7 @@ const PrivacyPolicy = () => {
                 <section className="mb-5">
                   <h4 style={headingStyle}>1. Introduction</h4>
                   <p>
-                    Welcome to <strong>TechXplorers Pvt. Ltd.</strong> ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. 
+                    Welcome to <strong>TechXplorers Pvt. Ltd.</strong> ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data.
                     This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights.
                   </p>
                 </section>
@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
                 <section className="mb-5">
                   <h4 style={headingStyle}>4. Data Security</h4>
                   <p>
-                    We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way. 
+                    We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way.
                     We limit access to your personal data to those employees, agents, contractors, and other third parties who have a business need to know.
                   </p>
                 </section>
@@ -88,7 +88,7 @@ const PrivacyPolicy = () => {
                 <div className="p-4 rounded" style={{ backgroundColor: isDarkMode ? '#374151' : '#F9FAFB' }}>
                   <h5 className="fw-bold mb-3" style={{ color: isDarkMode ? '#fff' : '#000' }}>5. Contact Us</h5>
                   <p className="mb-2">If you have any questions about this privacy policy, please contact us at:</p>
-                  <p className="mb-1"><strong>Email:</strong> <a href="mailto:inquiries@techxplorers.in" className="text-decoration-none">inquiries@techxplorers.in</a></p>
+                  <p className="mb-1"><strong>Email:</strong> <a href="mailto:hr@zethontech.com" className="text-decoration-none">hr@zethontech.com</a></p>
                   <p className="mb-0"><strong>Address:</strong> Maruthi Nagar 3rd cross, Near Panda Mini mart, Anantapur, 515001, India.</p>
                 </div>
               </article>

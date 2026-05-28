@@ -5,7 +5,7 @@ const WhatsAppFloat = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   // CONFIGURATION
-  const phoneNumber = "919052990765";
+  const phoneNumber = "918341978353";
   const message = "Hello! I would like to know more about your services.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
