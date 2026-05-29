@@ -27,7 +27,7 @@ const Contact = () => {
     const { name, email, subject, message } = formData;
 
     const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0ASubject: ${subject}%0AMessage: ${message}`;
-    const whatsappURL = `https://wa.me/919052990765?text=${whatsappMessage}`;
+    const whatsappURL = `https://wa.me/918341978353?text=${whatsappMessage}`;
 
     window.open(whatsappURL, '_blank');
   };

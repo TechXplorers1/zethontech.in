@@ -100,7 +100,7 @@ const JobSupport = () => {
 
         <div className="contact-container">
           <h2 className="headline">To work with us?</h2>
-          <a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
+          <a href="https://wa.me/918341978353" target="_blank" rel="noopener noreferrer" className="contact-button">
             Contact Us
           </a>
 
