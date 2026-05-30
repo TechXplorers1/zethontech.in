@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from '../../../components/Navbar';
 import { ref, update } from 'firebase/database';
 import { database, auth } from '../../../firebase';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const TOTAL_STEPS = 5;
 
@@ -15,7 +14,7 @@ const STEP_TITLES = [
   'Step 2: Employment & Job Preferences',
   'Step 3: Education & Current Employment (Optional)',
   'Step 4: References (Optional)',
-  'Step 5: Job Portal (Optional) & Resume',
+  'Step 5: Job Portal (Optional)',
 ];
 
 const INITIAL_FORM_DATA = {
@@ -88,8 +87,6 @@ const JobSupportContactForm = () => {
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [educationEntries, setEducationEntries] = useState([createEducationEntry()]);
-  const [resumeFiles, setResumeFiles] = useState([]);
-  const [coverLetterFile, setCoverLetterFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
   const [stepError, setStepError] = useState('');
@@ -107,14 +104,6 @@ const JobSupportContactForm = () => {
 
   const handleAddEducation = () => {
     setEducationEntries((prev) => [...prev, createEducationEntry()]);
-  };
-
-  const handleResumeFilesChange = (e) => {
-    setResumeFiles(Array.from(e.target.files || []));
-  };
-
-  const handleCoverLetterChange = (e) => {
-    setCoverLetterFile(e.target.files?.[0] || null);
   };
 
   const syncEducationToFormData = () => {
@@ -208,14 +197,6 @@ const JobSupportContactForm = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const uploadFile = async (file, folder, userKey) => {
-    const storage = getStorage();
-    const fileRef = storageRef(storage, `${folder}/${userKey}/${Date.now()}_${file.name}`);
-    await uploadBytes(fileRef, file);
-    const url = await getDownloadURL(fileRef);
-    return { name: file.name, url };
-  };
-
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     setIsSubmitting(true);
@@ -244,25 +225,15 @@ const JobSupportContactForm = () => {
 
     try {
       const education = syncEducationToFormData();
-      const resumeEntries = [];
-      for (const file of resumeFiles) {
-        resumeEntries.push(await uploadFile(file, 'resumes', loggedInUser.firebaseKey));
-      }
-
-      let coverLetter = null;
-      if (coverLetterFile) {
-        coverLetter = await uploadFile(coverLetterFile, 'coverLetters', loggedInUser.firebaseKey);
-      }
-
       const registrationKey = Date.now().toString();
       const clientFirebaseKey = loggedInUser.firebaseKey;
 
       const submissionData = {
         ...formData,
         education,
-        resume: resumeEntries,
-        resumes: resumeEntries,
-        coverLetter,
+        resume: [],
+        resumes: [],
+        coverLetter: null,
         service: 'Job Supporting',
         serviceType: 'Job Supporting',
         status: 'New',
@@ -278,19 +249,13 @@ const JobSupportContactForm = () => {
       updates[`service_registrations_index/${clientFirebaseKey}_${registrationKey}`] = submissionData;
       updates[`clients/${clientFirebaseKey}/firstName`] = formData.firstName;
       updates[`clients/${clientFirebaseKey}/lastName`] = formData.lastName;
-      updates[`clients/${clientFirebaseKey}/resume`] = resumeEntries;
-      updates[`clients/${clientFirebaseKey}/resumes`] = resumeEntries;
       updates[`users/${clientFirebaseKey}/firstName`] = formData.firstName;
       updates[`users/${clientFirebaseKey}/lastName`] = formData.lastName;
-      updates[`users/${clientFirebaseKey}/resume`] = resumeEntries;
-      updates[`users/${clientFirebaseKey}/resumes`] = resumeEntries;
 
       await update(ref(database), updates);
 
       setFormData(INITIAL_FORM_DATA);
       setEducationEntries([createEducationEntry()]);
-      setResumeFiles([]);
-      setCoverLetterFile(null);
       setCurrentStep(1);
       if (formRef.current) formRef.current.reset();
 
@@ -668,27 +633,6 @@ const JobSupportContactForm = () => {
           />
         </Col>
       </Row>
-      <Row className="jsc-row">
-        <Col md={6}>
-          <CenteredLabel>Upload Your Resume</CenteredLabel>
-          <Form.Control type="file" accept=".pdf,.doc,.docx" multiple onChange={handleResumeFilesChange} />
-          <Form.Text className="jsc-help-text">
-            Please upload your resume(s) in PDF, DOC, or DOCX format.
-          </Form.Text>
-          {resumeFiles.length > 0 && (
-            <Form.Text className="d-block text-muted">
-              {resumeFiles.length} file(s) selected
-            </Form.Text>
-          )}
-        </Col>
-        <Col md={6}>
-          <CenteredLabel>Cover Letter</CenteredLabel>
-          <Form.Control type="file" accept=".pdf,.doc,.docx" onChange={handleCoverLetterChange} />
-          <Form.Text className="jsc-help-text">
-            Please upload your Cover Letter in PDF, DOC, or DOCX format.
-          </Form.Text>
-        </Col>
-      </Row>
     </>
   );
 
@@ -1041,26 +985,12 @@ const JobSupportContactForm = () => {
             </>
           )}
 
-          <h4 className="mt-4 mb-3 pb-2 border-bottom text-primary fw-bold">Documents & Accounts</h4>
+          <h4 className="mt-4 mb-3 pb-2 border-bottom text-primary fw-bold">Job Portal Accounts</h4>
           <Row>
-            {formData.jobPortalAccountNameandCredentials && (
-              <Col md={12}>
-                <div className="mb-3">
-                  <label className="fw-bold text-dark mb-1" style={{ fontSize: '0.9rem' }}>Job Portal Accounts:</label>
-                  <Form.Control readOnly as="textarea" rows={1} value={formData.jobPortalAccountNameandCredentials || 'N/A'} style={{ backgroundColor: '#e9ecef', color: '#495057', resize: 'none' }} />
-                </div>
-              </Col>
-            )}
-            <Col md={6}>
+            <Col md={12}>
               <div className="mb-3">
-                <label className="fw-bold text-dark mb-1" style={{ fontSize: '0.9rem' }}>Resumes ({resumeFiles.length}):</label>
-                <Form.Control readOnly value={resumeFiles.length ? resumeFiles.map((f) => f.name).join(', ') : 'None provided'} style={{ backgroundColor: '#e9ecef', color: '#495057' }} />
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="mb-3">
-                <label className="fw-bold text-dark mb-1" style={{ fontSize: '0.9rem' }}>Cover Letter:</label>
-                <Form.Control readOnly value={coverLetterFile?.name || 'None provided'} style={{ backgroundColor: '#e9ecef', color: '#495057' }} />
+                <label className="fw-bold text-dark mb-1" style={{ fontSize: '0.9rem' }}>Job Portal Accounts:</label>
+                <Form.Control readOnly as="textarea" rows={2} value={formData.jobPortalAccountNameandCredentials || 'N/A'} style={{ backgroundColor: '#e9ecef', color: '#495057', resize: 'none' }} />
               </div>
             </Col>
           </Row>
