@@ -563,6 +563,7 @@ const ClientDashboard = () => {
           website: app.jobBoards,
           position: app.jobTitle,
           company: app.company,
+          jobType: app.jobType || 'N/A',
           // FIX: Ensure you are using the correct field name for the link
           link: app.jobDescriptionUrl || app.link || '', // Use 'link' for display, fallback to 'jobDescriptionUrl' if name is inconsistent
         };
@@ -1002,7 +1003,7 @@ const ClientDashboard = () => {
     const dataToExport = filteredApplicationsForDisplay.map((app, index) => ({
       'S.No': index + 1,
       'Applied Date': app.dateAdded,
-      'Job Boards': app.jobBoards,
+      'Job Boards': app.website || 'N/A',
       'Job Title': app.position,
       'Job ID': app.jobId,
       'Company': app.company,
@@ -1827,7 +1828,8 @@ const ClientDashboard = () => {
                   tempStartDate={tempStartDate}
                   setTempStartDate={setTempStartDate}
                   tempEndDate={tempEndDate}
-                  setTempEndDate={tempEndDate}
+                  setTempEndDate={setTempEndDate}
+                  handleOpenDateRangeModal={handleOpenDateRangeModal}
                   handleDateRangeChangeFromCalendar={handleDateRangeChangeFromCalendar}
                   handleApplyDateRange={handleApplyDateRange}
                   handleClearDateRangeInModal={handleClearDateRangeInModal}
@@ -1919,7 +1921,8 @@ const ClientDashboard = () => {
                   tempStartDate={tempStartDate}
                   setTempStartDate={setTempStartDate}
                   tempEndDate={tempEndDate}
-                  setTempEndDate={tempEndDate}
+                  setTempEndDate={setTempEndDate}
+                  handleOpenDateRangeModal={handleOpenDateRangeModal}
                   handleDateRangeChangeFromCalendar={handleDateRangeChangeFromCalendar}
                   handleApplyDateRange={handleApplyDateRange}
                   handleClearDateRangeInModal={handleClearDateRangeInModal}
@@ -2019,7 +2022,8 @@ const ClientDashboard = () => {
               tempStartDate={tempStartDate}
               setTempStartDate={setTempStartDate}
               tempEndDate={tempEndDate}
-              setTempEndDate={tempEndDate}
+              setTempEndDate={setTempEndDate}
+              handleOpenDateRangeModal={handleOpenDateRangeModal}
               handleDateRangeChangeFromCalendar={handleDateRangeChangeFromCalendar}
               handleApplyDateRange={handleApplyDateRange}
               handleClearDateRangeInModal={handleClearDateRangeInModal}

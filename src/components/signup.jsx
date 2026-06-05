@@ -79,8 +79,14 @@ export default function SignupPage() {
       avatar: user.photoURL || `https://placehold.co/40x40/007bff/white?text=${user.email.charAt(0).toUpperCase()}`
     };
 
-    sessionStorage.setItem('loggedInEmployee', JSON.stringify(finalUserData));
-    login(finalUserData);
+    // Merge DB fields and ensure display name exists (use Google displayName or email local-part)
+    const mergedUserData = { firebaseKey: user.uid, uid: user.uid, ...finalUserData, ...(userDataFromDb || {}) };
+    if (!mergedUserData.name) {
+      mergedUserData.name = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
+    }
+
+    sessionStorage.setItem('loggedInEmployee', JSON.stringify(mergedUserData));
+    login(mergedUserData);
 
     if (finalUserData.roles.includes('admin')) {
       navigate('/adminpage');

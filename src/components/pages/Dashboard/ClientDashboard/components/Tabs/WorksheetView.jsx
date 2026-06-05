@@ -8,7 +8,7 @@ const WorksheetView = ({ setActiveTab, activeWorksheetTab, setActiveWorksheetTab
   showPreviousWeek, showNextWeek, searchTerm, setSearchTerm,
   startDateFilter, setStartDateFilter, endDateFilter, setEndDateFilter,
   showDateRangeModal, setShowDateRangeModal, tempStartDate, setTempStartDate, tempEndDate, setTempEndDate,
-  handleDateRangeChangeFromCalendar, handleApplyDateRange, handleClearDateRangeInModal,
+  handleDateRangeChangeFromCalendar, handleApplyDateRange, handleClearDateRangeInModal, handleOpenDateRangeModal,
   showJobDescriptionModal, setShowJobDescriptionModal, currentJobDescription, setCurrentJobDescription,
   handleOpenJobDescriptionModal, handleCloseJobDescriptionModal,
   filterWebsites, setFilterWebsites, filterPositions, setFilterPositions, filterCompanies, setFilterCompanies,
@@ -151,6 +151,7 @@ const WorksheetView = ({ setActiveTab, activeWorksheetTab, setActiveWorksheetTab
           handleDateRangeChangeFromCalendar={handleDateRangeChangeFromCalendar}
           handleApplyDateRange={handleApplyDateRange}
           handleClearDateRangeInModal={handleClearDateRangeInModal}
+          handleOpenDateRangeModal={handleOpenDateRangeModal}
           showJobDescriptionModal={showJobDescriptionModal}
           setShowJobDescriptionModal={setShowJobDescriptionModal}
           currentJobDescription={currentJobDescription}

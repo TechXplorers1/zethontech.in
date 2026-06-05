@@ -7,22 +7,15 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import { formatDate } from '../../helpers';
 import { modalClearButtonStyle } from '../../styles';
 
-const DateRangeCalendar = ({ initialStartDate, initialEndDate, onSelectRange }) => {
-  const [start, setStart] = useState(initialStartDate);
-  const [end, setEnd] = useState(initialEndDate);
-
-  useEffect(() => {
-    onSelectRange(start, end);
-  }, [start, end, onSelectRange]);
-
+const DateRangeCalendar = ({ startDate, endDate, onSelectRange }) => {
   const handleStartDateChange = (e) => {
     const newDate = e.target.value ? new Date(e.target.value) : null;
-    setStart(newDate);
+    onSelectRange(newDate, endDate);
   };
 
   const handleEndDateChange = (e) => {
     const newDate = e.target.value ? new Date(e.target.value) : null;
-    setEnd(newDate);
+    onSelectRange(startDate, newDate);
   };
 
   const formatToInputDate = (date) => {
@@ -38,16 +31,24 @@ const DateRangeCalendar = ({ initialStartDate, initialEndDate, onSelectRange }) 
         <Form.Label>From Date:</Form.Label>
         <Form.Control
           type="date"
-          value={formatToInputDate(start)}
+          value={formatToInputDate(startDate)}
           onChange={handleStartDateChange}
+          onClick={(e) => {
+            try { e.currentTarget.showPicker(); } catch (err) {}
+          }}
+          style={{ cursor: 'pointer' }}
         />
       </Form.Group>
       <Form.Group controlId="tempEndDate" className="mb-3">
         <Form.Label>To Date:</Form.Label>
         <Form.Control
           type="date"
-          value={formatToInputDate(end)}
+          value={formatToInputDate(endDate)}
           onChange={handleEndDateChange}
+          onClick={(e) => {
+            try { e.currentTarget.showPicker(); } catch (err) {}
+          }}
+          style={{ cursor: 'pointer' }}
         />
       </Form.Group>
     </div>
@@ -85,7 +86,7 @@ const Applications = ({
   showPreviousWeek, showNextWeek, searchTerm, setSearchTerm,
   startDateFilter, setStartDateFilter, endDateFilter, setEndDateFilter,
   showDateRangeModal, setShowDateRangeModal, tempStartDate, setTempStartDate, tempEndDate, setTempEndDate,
-  handleDateRangeChangeFromCalendar, handleApplyDateRange, handleClearDateRangeInModal,
+  handleDateRangeChangeFromCalendar, handleApplyDateRange, handleClearDateRangeInModal, handleOpenDateRangeModal,
   showJobDescriptionModal, setShowJobDescriptionModal, currentJobDescription, setCurrentJobDescription,
   handleOpenJobDescriptionModal, handleCloseJobDescriptionModal,
   filterWebsites, setFilterWebsites, filterPositions, setFilterPositions, filterCompanies, setFilterCompanies,
@@ -390,7 +391,7 @@ const Applications = ({
 
             {/* Combined Date Range Picker Icon Trigger */}
             <div
-              onClick={() => setShowDateRangeModal(true)}
+              onClick={handleOpenDateRangeModal}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -584,8 +585,8 @@ const Applications = ({
         </Modal.Header>
         <Modal.Body>
           <DateRangeCalendar
-            initialStartDate={tempStartDate}
-            initialEndDate={tempEndDate}
+            startDate={tempStartDate}
+            endDate={tempEndDate}
             onSelectRange={handleDateRangeChangeFromCalendar}
           />
         </Modal.Body>

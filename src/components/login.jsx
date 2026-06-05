@@ -88,9 +88,21 @@ export default function LoginPage() {
         `https://placehold.co/40x40/007bff/white?text=${email.charAt(0).toUpperCase()}`,
     };
 
-    sessionStorage.setItem('loggedInClient', JSON.stringify(finalUserData));
-    sessionStorage.setItem('loggedInEmployee', JSON.stringify(finalUserData));
-    login(finalUserData);
+    // Merge any DB fields (like firstName/lastName/name) so UI can show full name
+    const mergedUserData = { ...finalUserData, ...(userDataFromDb || {}) };
+
+    // Ensure there's a display name available
+    if (!mergedUserData.name) {
+      if (mergedUserData.firstName || mergedUserData.lastName) {
+        mergedUserData.name = `${mergedUserData.firstName || ''} ${mergedUserData.lastName || ''}`.trim();
+      } else {
+        mergedUserData.name = email.split('@')[0];
+      }
+    }
+
+    sessionStorage.setItem('loggedInClient', JSON.stringify(mergedUserData));
+    sessionStorage.setItem('loggedInEmployee', JSON.stringify(mergedUserData));
+    login(mergedUserData);
 
     const roleRoutes = {
       admin: '/adminpage',
