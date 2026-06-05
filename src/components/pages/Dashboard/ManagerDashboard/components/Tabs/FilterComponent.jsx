@@ -28,8 +28,8 @@ const FilterComponent = ({
         <div style={{ display: 'flex', gap: '10px' }}>
           <input
             type="date"
-            name="start"
-            value={filterDateRange.start}
+            name="startDate"
+            value={filterDateRange.startDate}
             onChange={handleDateRangeChange}
             className="form-input"
             style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--header-border-color)' }}
@@ -37,8 +37,8 @@ const FilterComponent = ({
           <span style={{ alignSelf: 'center', color: 'var(--subtitle-color)' }}>to</span>
           <input
             type="date"
-            name="end"
-            value={filterDateRange.end}
+            name="endDate"
+            value={filterDateRange.endDate}
             onChange={handleDateRangeChange}
             className="form-input"
             style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--header-border-color)' }}

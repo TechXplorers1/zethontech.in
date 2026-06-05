@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'; // Import useRef
 import { useNavigate } from 'react-router-dom';
+import { utils, writeFile } from 'xlsx';
 import { Modal, Button, Spinner } from 'react-bootstrap'; // Using react-bootstrap Modal
 import {
   ref,
@@ -2148,8 +2149,8 @@ Please provide a summary no longer than 150 words.`;
           <div style={{ display: 'flex', gap: '10px' }}>
             <input
               type="date"
-              name="start"
-              value={filterDateRange.start}
+              name="startDate"
+              value={filterDateRange.startDate}
               onChange={handleDateRangeChange}
               className="form-input"
               style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--header-border-color)' }}
@@ -2157,8 +2158,8 @@ Please provide a summary no longer than 150 words.`;
             <span style={{ alignSelf: 'center', color: 'var(--subtitle-color)' }}>to</span>
             <input
               type="date"
-              name="end"
-              value={filterDateRange.end}
+              name="endDate"
+              value={filterDateRange.endDate}
               onChange={handleDateRangeChange}
               className="form-input"
               style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--header-border-color)' }}
