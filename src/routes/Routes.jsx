@@ -37,6 +37,23 @@ import EmployeeData from '../components/pages/Dashboard/EmployeeDashboard/Employ
 import ClientDashboard from '../components/pages/Dashboard/ClientDashboard';
 
 
+const getUserRoles = (user) => {
+  if (!user) return [];
+  let userRoles = [];
+  if (Array.isArray(user.roles)) {
+    userRoles = user.roles;
+  } else if (typeof user.roles === 'string') {
+    userRoles = [user.roles];
+  } else if (user.roles && typeof user.roles === 'object') {
+    userRoles = Object.values(user.roles).filter(v => typeof v === 'string');
+  } else if (typeof user.role === 'string') {
+    userRoles = [user.role];
+  } else if (Array.isArray(user.role)) {
+    userRoles = user.role;
+  }
+  return userRoles.map(r => String(r).toLowerCase());
+};
+
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { isLoggedIn, user } = useAuth();
   if (!isLoggedIn) {
@@ -45,7 +62,8 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   }
 
   // Check if the user's roles are allowed for this route
-  const isAuthorized = user && user.roles && user.roles.some(role => allowedRoles.includes(role));
+  const cleanRoles = getUserRoles(user);
+  const isAuthorized = cleanRoles.some(role => allowedRoles.map(r => r.toLowerCase()).includes(role));
 
   if (!isAuthorized) {
     // If logged in but not authorized, redirect to a default/home page

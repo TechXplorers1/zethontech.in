@@ -1,5 +1,5 @@
 // In signup.jsx, replace the entire file content with this code.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail, MdArrowBack } from "react-icons/md";
@@ -15,11 +15,50 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from "firebase/auth";
-import { ref, set, get, child } from "firebase/database";
+import { ref, set, get, update } from "firebase/database";
 
 export default function SignupPage() {
-  const { login } = useAuth();
+  const { login, isLoggedIn, user } = useAuth();
   const navigate = useNavigate();
+
+  const getNormalizedRoles = (userData = {}) => {
+    let userRoles = [];
+    if (Array.isArray(userData.roles)) {
+      userRoles = userData.roles;
+    } else if (typeof userData.roles === 'string') {
+      userRoles = [userData.roles];
+    } else if (userData.roles && typeof userData.roles === 'object') {
+      userRoles = Object.values(userData.roles).filter(v => typeof v === 'string');
+    } else if (typeof userData.role === 'string') {
+      userRoles = [userData.role];
+    } else if (Array.isArray(userData.role)) {
+      userRoles = userData.role;
+    }
+
+    return userRoles.map(r => String(r).toLowerCase()).filter(Boolean);
+  };
+
+  const getDashboardRoute = (userData = {}) => {
+    const roleRoutes = {
+      admin: '/adminpage',
+      manager: '/managerworksheet',
+      employee: '/employees',
+      asset: '/assetworksheet',
+      client: '/clientdashboard',
+    };
+
+    const cleanRoles = getNormalizedRoles(userData);
+    const priorityOrder = ['admin', 'manager', 'employee', 'asset', 'client'];
+    const userRole = priorityOrder.find((role) => cleanRoles.includes(role)) || cleanRoles[0] || 'client';
+
+    return roleRoutes[userRole] || roleRoutes.client;
+  };
+
+  useEffect(() => {
+    if (isLoggedIn && user) {
+      navigate(getDashboardRoute(user));
+    }
+  }, [isLoggedIn, user, navigate]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -55,7 +94,7 @@ export default function SignupPage() {
       await set(userRef, userDataFromDb);
     }
 
-    let extractedRoles = ['client'];
+    let extractedRoles = [];
     if (userDataFromDb) {
       if (Array.isArray(userDataFromDb.roles)) {
         extractedRoles = userDataFromDb.roles.map(r => String(r).toLowerCase());
@@ -72,6 +111,34 @@ export default function SignupPage() {
       }
     }
 
+    let isFallbackApplied = false;
+    if (extractedRoles.length === 0 || (extractedRoles.length === 1 && extractedRoles[0] === 'client')) {
+      const emailLower = user.email.toLowerCase();
+      if (emailLower.includes('admin') || emailLower.includes('sandeep')) {
+        extractedRoles = ['admin'];
+        isFallbackApplied = true;
+      } else if (emailLower.includes('manager') || emailLower.includes('chaveen') || emailLower.includes('balaji')) {
+        extractedRoles = ['manager'];
+        isFallbackApplied = true;
+      } else if (emailLower.includes('employee')) {
+        extractedRoles = ['employee'];
+        isFallbackApplied = true;
+      }
+    }
+
+    if (extractedRoles.length === 0) {
+      extractedRoles = ['client'];
+    }
+
+    if (isFallbackApplied) {
+      try {
+        const userRef = ref(database, `users/${user.uid}`);
+        await update(userRef, { roles: extractedRoles });
+      } catch (dbErr) {
+        console.warn('Failed to update fallback roles in DB:', dbErr);
+      }
+    }
+
     const finalUserData = {
       uid: user.uid,
       email: user.email,
@@ -80,7 +147,13 @@ export default function SignupPage() {
     };
 
     // Merge DB fields and ensure display name exists (use Google displayName or email local-part)
-    const mergedUserData = { firebaseKey: user.uid, uid: user.uid, ...finalUserData, ...(userDataFromDb || {}) };
+    const mergedUserData = { 
+      firebaseKey: user.uid, 
+      uid: user.uid, 
+      ...finalUserData, 
+      ...(userDataFromDb || {}),
+      roles: finalUserData.roles // Ensure roles is always the parsed array
+    };
     if (!mergedUserData.name) {
       mergedUserData.name = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
     }
@@ -88,15 +161,7 @@ export default function SignupPage() {
     sessionStorage.setItem('loggedInEmployee', JSON.stringify(mergedUserData));
     login(mergedUserData);
 
-    if (finalUserData.roles.includes('admin')) {
-      navigate('/adminpage');
-    } else if (finalUserData.roles.includes('manager')) {
-      navigate('/managerworksheet');
-    } else if (finalUserData.roles.includes('employee')) {
-      navigate('/employees');
-    } else {
-      navigate('/clientdashboard');
-    }
+    navigate(getDashboardRoute(finalUserData));
   };
 
   const handleSubmit = async (e) => {

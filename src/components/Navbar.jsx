@@ -76,11 +76,29 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
     navigate('/login');
   };
 
+  const getUserRoles = (user) => {
+    if (!user) return [];
+    let userRoles = [];
+    if (Array.isArray(user.roles)) {
+      userRoles = user.roles;
+    } else if (typeof user.roles === 'string') {
+      userRoles = [user.roles];
+    } else if (user.roles && typeof user.roles === 'object') {
+      userRoles = Object.values(user.roles).filter(v => typeof v === 'string');
+    } else if (typeof user.role === 'string') {
+      userRoles = [user.role];
+    } else if (Array.isArray(user.role)) {
+      userRoles = user.role;
+    }
+    return userRoles.map(r => String(r).toLowerCase());
+  };
+
   const getDashboardPath = () => {
-    if (!user || !user.roles) return '/';
-    if (user.roles.includes('admin')) return '/adminpage';
-    if (user.roles.includes('manager')) return '/managerworksheet';
-    if (user.roles.includes('employee')) return '/employees';
+    if (!user) return '/';
+    const cleanRoles = getUserRoles(user);
+    if (cleanRoles.includes('admin')) return '/adminpage';
+    if (cleanRoles.includes('manager')) return '/managerworksheet';
+    if (cleanRoles.includes('employee')) return '/employees';
     return '/clientdashboard'; // Default for clients
   };
 

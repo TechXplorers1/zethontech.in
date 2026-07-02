@@ -180,7 +180,7 @@ const DashboardOverview = ({
                     justifyContent: 'flex-start',
                     alignItems: 'flex-start'
                   }}>
-                    <h3 style={{ color: '#1e293b', fontWeight: '800', marginBottom: '15px', fontSize: '2rem' }}>Welcome to TechXplorers</h3>
+                    <h3 style={{ color: '#1e293b', fontWeight: '800', marginBottom: '15px', fontSize: '2rem' }}>Welcome to Zethon Tech</h3>
                     <p style={{ color: '#64748b', fontSize: '1.1rem', lineHeight: '1.6', marginBottom: '20px' }}>Manage your services, track applications, and grow your business with our comprehensive dashboard.</p>
                   </div>
                 </div>
