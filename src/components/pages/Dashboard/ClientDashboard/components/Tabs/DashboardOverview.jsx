@@ -748,7 +748,7 @@ const DashboardOverview = ({
                   maxWidth: "500px",
                 }}
               >
-                Join thousands of professionals who trust TechXplorers.<br />
+                Join thousands of professionals who trust Zethon.<br />
                 Connect with our team to discuss tailored solutions and competitive pricing for your specific needs.
               </p>
               <div

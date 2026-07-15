@@ -6,6 +6,7 @@ import { database } from '../../../../firebase'; // Import your Firebase config
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { utils, writeFile } from 'xlsx';
 import './styles/employeeStyles.css';
+import logo from '../../../../assets/zethon_logo.png';
 import NewClientsTab from './components/Tabs/NewClientsTab';
 import ActiveClientsTab from './components/Tabs/ActiveClientsTab';
 import InactiveClientsTab from './components/Tabs/InactiveClientsTab';
@@ -102,13 +103,12 @@ const AdminHeader = ({
     <>
       {/* Inline styles for AdminHeader - extracted from AdminWorksheet.jsx */}
       <header className="ad-header">
-        <div className="ad-header-left">
-          <div className="ad-logo" onClick={onLogoClick} style={{ cursor: 'pointer' }}>
-            <span>Tech</span>
-            <span className="ad-logo-x">X</span>
-            <span>plorers</span>
-          </div>
-        </div>
+        <h1 className="header-logo" onClick={onLogoClick} style={{ cursor: 'pointer' }}>
+          <img src={logo} alt="Zethon Tech Logo" height="50" />
+          <span style={{ color: 'black', marginLeft: '10px', fontWeight: '', fontSize: '1.5rem' }}>
+            Zethon Tech
+          </span>
+        </h1>
 
         <div className="ad-header-right">
           <div className="ad-notification-icon">
@@ -439,7 +439,7 @@ const EmployeeData = () => {
 
               // Merge base client data and registration data (registration data takes precedence)
               const mergedData = { ...clientBase, ...registration };
-              
+
               const firstName = mergedData.firstName || '';
               const lastName = mergedData.lastName || '';
               const dateToDisplay = mergedData.registeredDate || mergedData.appliedDate || mergedData.timestamp || 'N/A';
@@ -2415,10 +2415,10 @@ const EmployeeData = () => {
 
 
 
-  
+
   const allProps = { handleOpenAddApplicationModal, handleRequestDeleteApplication, handleConfirmDeleteApplication, handleRequestDeleteFile, handleConfirmDeleteFile, handleNotificationIconClick, handleOpenProfileModal, handleProfileFormChange, handleSaveProfileChanges, handleCancelEditProfile, handleLogout, handleSearchChange, handleFromDateChange, handleToDateChange, handleResumeFileChange, handleSaveNewResume, handleNextStep, handleEditedApplicationFormChange, handleSaveEditedApplication, handlePasteAttachment, handleOpenUploadFileModal, handleNewFileFormChange, handleSaveNewFile, handleViewFile, handleEditFile, handleEditedFileFormChange, handleSaveEditedFile, formatDateTime, setImageUrlToView, imageUrlToView, editedApplicationFormData, editedFileFormData, newFileFormData, modalHeaderStyle, modalTitleStyle, modalBodyStyle, modalFormGridStyle, modalFormFieldGroupStyle, modalLabelStyle, modalInputStyle, modalSelectStyle, modalTextareaStyle, modalFooterStyle, modalCancelButtonStyle, modalAddButtonPrimaryStyle, modalViewDetailsGridStyle, modalViewDetailItemStyle, errorTextStyle, applicationStatusBadgeStyle, getApplicationStatusStyle, clientSearchTermInModal, setClientSearchTermInModal, handleSelectClientFromModal, activeTab, searchTerm, sortOrder, statusFilter, activityTypeFilter, filterDateRange, applicationsPage, quickFilter, handleQuickFilterChange, handleClearFilters, areFiltersActive, handleDateRangeChange, setSortOrder, setSearchTerm, setStatusFilter, paginatedApplications, getFilteredAndSortedFiles, newClients, activeClients, inactiveClients, selectedClient, allActivities, filteredActivities, allFilteredApplications, applicationsByDate, totalApplicationPages, showAddApplicationModal, showViewApplicationModal, showEditApplicationModal, showUploadFileModal, showViewFileModal, showEditFileModal, showEmployeeProfileModal, showNotificationModal, isClientSelectModalOpen, showImageViewer, showDeleteFileModal, newApplicationFormData, newApplicationErrors, currentModalStep, isSubmittingApplication, viewedApplication, selectedClientForFile, viewedFile, fileToDelete, notifications, APPLICATIONS_PAGE_SIZE, employeeName, triggerNotification, handleAcceptClient, handleDownloadResume, handleViewApplication, handleEditApplication, handleDeleteApplication, handlePrevApplicationsPage, handleNextApplicationsPage, handleNewApplicationFormChange, validateApplicationConflicts, handleSaveNewApplication, handleCloseClientSelectModal, setShowAddApplicationModal, setShowViewApplicationModal, setShowEditApplicationModal, setShowUploadFileModal, setShowViewFileModal, setShowEditFileModal, setShowEmployeeProfileModal, setShowNotificationModal, setIsClientSelectModalOpen, setShowImageViewer, setShowDeleteFileModal, setCurrentModalStep, setSelectedClient, setViewedApplication, setViewedFile, setFileToDelete, activeSubTab, setActiveSubTab, handleOpenClientSelectModal, applicationsSectionStyle, sectionTitleStyle, subLabelStyle, clientSelectContainerStyle, filterLabelStyle, selectClientButtonStyle, tabsContainerStyle, tabButtonStyle, tabButtonActiveStyle, overviewCardsContainerStyle, cardStyle, cardIconContainerStyle, cardLabelStyle, cardValueStyle, cardSubLabelStyle, clientsGridStyle, clientCardStyle, clientCardHeaderStyle, clientNameStyle, clientCodeStyle, statusBadgeStyle, priorityBadgeStyle, clientDetailStyle, clientCardFooterStyle, footerItemStyle, footerItemLabelStyle, footerItemValueStyle, footerItemIconStyle, viewButtonStyle, activityButtonStyle, clientDataGridStyle, clientDataSectionStyle, clientDataSectionTitleStyle, clientDataDetailStyle, initialsCircleStyle, clientDetailIconStyle, clientApplicationsContainerStyle, clientApplicationsHeaderStyle, clientAppStatsStyle, addApplicationButtonStyle, applicationTableControlsStyle, searchInputStyle, statusFilterSelectStyle, downloadButtonStyle, applicationTableWrapperStyle, applicationTableStyle, applicationTableHeaderCellStyle, applicationTableDataCellStyle, actionButtonAppStyle, actionButtonSecondaryStyle, deleteButtonStyle, filesGridStyle, fileCardStyle, fileCardHeaderStyle, fileIconStyle, fileNameStyle, fileSizeStyle, fileStatusStyle, fileUploadDateStyle, fileNotesStyle, fileActionsStyle, activityTimelineContainerStyle, activityItemStyle, activityIconContainerStyle, initialsCircleSmallStyle, activityContentStyle, activityDescriptionStyle, activityDateStyle, activityBadgeStyle, getActivityBadgeStyle, getActivityStatusStyle, activityStatusBadgeStyle };
 
-return (
+  return (
     <div style={containerStyle}>
       <AdminHeader
         adminUserName={`${employeeDetails.firstName || ''} ${employeeDetails.lastName || ''}`.trim() || employeeDetails.name}
@@ -2473,19 +2473,19 @@ return (
       </header>
 
       {/* NEW: New Clients Tab Content */}
-        {activeTab === 'New Clients' && (
-          <NewClientsTab {...allProps} />
-        )}
+      {activeTab === 'New Clients' && (
+        <NewClientsTab {...allProps} />
+      )}
 
       {/* Active Clients Tab Content */}
-        {activeTab === 'Active Clients' && (
-          <ActiveClientsTab {...allProps} />
-        )}
+      {activeTab === 'Active Clients' && (
+        <ActiveClientsTab {...allProps} />
+      )}
 
       {/* NEW: Inactive Clients Tab Content */}
-        {activeTab === 'Inactive Clients' && (
-          <InactiveClientsTab {...allProps} />
-        )}
+      {activeTab === 'Inactive Clients' && (
+        <InactiveClientsTab {...allProps} />
+      )}
 
       {/* Add New Application Modal */}
       {/* Add New Application Modal */}
@@ -2519,19 +2519,19 @@ return (
 
       {/* Employee Profile Details Modal */}
       {/* Employee Profile Details Modal */}
-        <EmployeeProfileModal {...allProps} />
+      <EmployeeProfileModal {...allProps} />
 
       {/* Notification Modal (New from screenshot) */}
-        <NotificationModal {...allProps} />
+      <NotificationModal {...allProps} />
 
       {isClientSelectModalOpen && (
         <ClientSelectModal {...allProps} />
       )}
 
-        <ImageViewerModal {...allProps} />
+      <ImageViewerModal {...allProps} />
 
       {/* Delete File Confirmation Modal */}
-        <DeleteFileModal {...allProps} />
+      <DeleteFileModal {...allProps} />
 
       {/* NEW MODAL: Delete Confirmation Modal for Applications */}
       <Modal
